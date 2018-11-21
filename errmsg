@@ -1,0 +1,62 @@
+2018-10-25 11:32:55.881544: W tensorflow/core/framework/op_kernel.cc:1198] Not found: Key LSTM1/basic_lstm_cell/kernel not found in checkpoint
+2018-10-25 11:32:55.881544: W tensorflow/core/framework/op_kernel.cc:1198] Not found: Key LSTM1/basic_lstm_cell/bias not found in checkpoint
+2018-10-25 11:32:55.881544: W tensorflow/core/framework/op_kernel.cc:1198] Not found: Key LSTM2/basic_lstm_cell/bias not found in checkpoint
+2018-10-25 11:32:55.883309: W tensorflow/core/framework/op_kernel.cc:1198] Not found: Key LSTM2/basic_lstm_cell/kernel not found in checkpoint
+Traceback (most recent call last):
+  File "video_captioning.py", line 25, in <module>
+    generated_sentence = utils.get_caption(video_feat)
+  File "/home/waynamigo/PycharmProjects/VideoCaptioning_att-master/utils.py", line 121, in get_caption
+    saver.restore(sess, model_path)
+  File "/home/waynamigo/.local/lib/python2.7/site-packages/tensorflow/python/training/saver.py", line 1686, in restore
+    {self.saver_def.filename_tensor_name: save_path})
+  File "/home/waynamigo/.local/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 895, in run
+    run_metadata_ptr)
+  File "/home/waynamigo/.local/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 1128, in _run
+    feed_dict_tensor, options, run_metadata)
+  File "/home/waynamigo/.local/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 1344, in _do_run
+    options, run_metadata)
+  File "/home/waynamigo/.local/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 1363, in _do_call
+    raise type(e)(node_def, op, message)
+NotFoundError: Key LSTM1/basic_lstm_cell/kernel not found in checkpoint
+	 [[Node: save/RestoreV2_1 = RestoreV2[dtypes=[DT_FLOAT], _device="/job:localhost/replica:0/task:0/device:CPU:0"](_arg_save/Const_0_0, save/RestoreV2_1/tensor_names, save/RestoreV2_1/shape_and_slices)]]
+
+Caused by op u'save/RestoreV2_1', defined at:
+  File "video_captioning.py", line 25, in <module>
+    generated_sentence = utils.get_caption(video_feat)
+  File "/home/waynamigo/PycharmProjects/VideoCaptioning_att-master/utils.py", line 120, in get_caption
+    saver = tf.train.Saver()
+  File "/home/waynamigo/.local/lib/python2.7/site-packages/tensorflow/python/training/saver.py", line 1239, in __init__
+    self.build()
+  File "/home/waynamigo/.local/lib/python2.7/site-packages/tensorflow/python/training/saver.py", line 1248, in build
+    self._build(self._filename, build_save=True, build_restore=True)
+  File "/home/waynamigo/.local/lib/python2.7/site-packages/tensorflow/python/training/saver.py", line 1284, in _build
+    build_save=build_save, build_restore=build_restore)
+  File "/home/waynamigo/.local/lib/python2.7/site-packages/tensorflow/python/training/saver.py", line 765, in _build_internal
+    restore_sequentially, reshape)
+  File "/home/waynamigo/.local/lib/python2.7/site-packages/tensorflow/python/training/saver.py", line 428, in _AddRestoreOps
+    tensors = self.restore_op(filename_tensor, saveable, preferred_shard)
+  File "/home/waynamigo/.local/lib/python2.7/site-packages/tensorflow/python/training/saver.py", line 268, in restore_op
+    [spec.tensor.dtype])[0])
+  File "/home/waynamigo/.local/lib/python2.7/site-packages/tensorflow/python/ops/gen_io_ops.py", line 1031, in restore_v2
+    shape_and_slices=shape_and_slices, dtypes=dtypes, name=name)
+  File "/home/waynamigo/.local/lib/python2.7/site-packages/tensorflow/python/framework/op_def_library.py", line 787, in _apply_op_helper
+    op_def=op_def)
+  File "/home/waynamigo/.local/lib/python2.7/site-packages/tensorflow/python/framework/ops.py", line 3160, in create_op
+    op_def=op_def)
+  File "/home/waynamigo/.local/lib/python2.7/site-packages/tensorflow/python/framework/ops.py", line 1625, in __init__
+    self._traceback = self._graph._extract_stack()  # pylint: disable=protected-access
+
+NotFoundError (see above for traceback): Key LSTM1/basic_lstm_cell/kernel not found in checkpoint
+	 [[Node: save/RestoreV2_1 = RestoreV2[dtypes=[DT_FLOAT], _device="/job:localhost/replica:0/task:0/device:CPU:0"](_arg_save/Const_0_0, save/RestoreV2_1/tensor_names, save/RestoreV2_1/shape_and_slices)]]
+
+
+If you suspect this is an IPython bug, please report it at:
+    https://github.com/ipython/ipython/issues
+or send an email to the mailing list at ipython-dev@python.org
+
+You can print a more detailed traceback right now with "%tb", or use "%debug"
+to interactively debug it.
+
+Extra-detailed tracebacks for bug-reporting purposes can be enabled via:
+    %config Application.verbose_crash=True
+
